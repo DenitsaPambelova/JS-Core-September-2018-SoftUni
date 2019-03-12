@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meme Lounge</title>
+    <link rel="stylesheet" href="style/navigation.css">
+    <link rel="stylesheet" href="style/site.css">
+    <link rel="stylesheet" href="style/welcome.css">
+    <link rel="stylesheet" href="style/notifications.css">
+    <link rel="stylesheet" href="style/login-register.css">
+    <link rel="stylesheet" href="style/meme-feed.css">
+    <link rel="stylesheet" href="style/my-memes.css">
+    <link rel="stylesheet" href="style/meme-details.css">
+    <link rel="stylesheet" href="style/user-profile.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/user-meme-listings.css">
+
+</head>
+
+<body>
+<div id="container">
+
+</div>
+
+
+<div id="notifications">
+    <div id="loadingBox" class="notification">
+        <span>Loading …</span>
+    </div>
+    <div id="infoBox" class="notification">
+        <span>Info</span>
+    </div>
+    <div id="errorBox" class="notification">
+        <span>Error</span>
+    </div>
+</div>
+<!-- Load libs -->
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="./node_modules/sammy/lib/min/sammy-0.7.6.min.js"></script>
+<script src="./node_modules/sammy/lib/min/plugins/sammy.handlebars-0.7.6.min.js"></script>
+<!-- Load models app scripts -->
+<script src="model/userModel.js"></script>
+<script src="model/memeModel.js"></script>
+<!-- Load scripts app scripts -->
+<script src="scripts/remote.js"></script>
+<script src="scripts/notify.js"></script>
+<script src="scripts/validator.js"></script>
+<!-- Load controllers app scripts -->
+<script src="controller/viewController.js"></script>
+<script src="controller/userController.js"></script>
+<script src="controller/memeController.js"></script>
+<!-- Load app -->
+<script src="./app.js"></script>
+
+</body>
+
+</html>

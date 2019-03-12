@@ -1,0 +1,42 @@
+{{> header}}
+
+<div class="user-profile">
+    {{#each userProfiles}}
+        {{#if hasAvatar}}
+            <img id="user-avatar-url" src="{{avatarUrl}}" alt="user-profile">
+        {{else}}
+            <img id="user-avatar-url" src="https://i.pinimg.com/originals/7c/c7/a6/7cc7a630624d20f7797cb4c8e93c09c1.png"
+                 alt="user-profile">
+        {{/if}}
+        <h1>{{username}}</h1>
+        <h2>{{email}}</h2>
+
+        {{#if isMyProfile}}
+            <a id="deleteUserButton" href="#/profile/delete/:{{userId}}">DELETE USER!</a>
+        {{/if}}
+
+        <p id="user-listings-title">User Memes</p>
+
+        <div class="user-meme-listings">
+            {{#if hasMemes}}
+                {{#each memes}}
+                    <div class="user-meme">
+                        <a href="#/details/:{{_id}}" class="user-meme-title">{{title}}</a>
+                        <a href="#/details/:{{_id}}"> <img class="userProfileImage" src="{{imageUrl}}"></a>
+
+                        {{#if isAuthorize}}
+                            <div class="user-memes-buttons">
+                                <a href="#/edit/:{{_id}}" class="user-meme-btn">Edit</a>
+                                <a href="#/delete/:{{_id}}" class="user-meme-btn">Delete</a>
+                            </div>
+                        {{/if}}
+                    </div>
+                {{/each}}
+            {{else}}
+                <p class="no-memes">No memes in database.</p>
+            {{/if}}
+        </div>
+    {{/each}}
+</div>
+
+{{> footer}}
