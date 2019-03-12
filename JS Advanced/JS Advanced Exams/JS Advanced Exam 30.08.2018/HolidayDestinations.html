@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Holiday Destinations</title>
+    <style>
+        #wrapper { margin: auto; width: 50%; border: 2px solid rgb(138, 43, 226);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: rgb(247, 247, 247); color: rgb(138, 43, 226); }
+        #input, #summaryBox { margin: auto; width: 90%; }
+        .custom-select, .button {font-family: Verdana, Geneva, Tahoma, sans-serif;}
+        .button { cursor: pointer; background-color: white; }
+        .summary { width: 40px; }
+        .inputData { width: 70px; }
+        h1, h3 { text-align: center; }
+        table { margin: 0 auto; width: 75%; }
+        table, th, td { border: 1px solid rgb(138, 43, 226); }
+        input, .custom-select, .button { border: 1px solid rgb(138, 43, 226);
+            color: rgb(138, 43, 226); padding: 5px 15px; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="solution.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <h1>Holiday Destinations</h1>
+    <div id="input">
+        <label>City:</label> <input class="inputData" type="text">
+        <label>Country:</label> <input class="inputData" type="text">
+        <label>Season:</label>
+        <select id="seasons" class="custom-select">
+            <option value="summer">Summer</option>
+            <option value="autumn">Autumn</option>
+            <option value="winter">Winter</option>
+            <option value="spring">Spring</option>
+        </select>
+        <button class="button" onclick="addDestination()">Add Destination</button>
+    </div> <br>
+    <table id="destinations">
+        <thead>
+        <tr>
+            <th>Destination</th>
+            <th>Season</th>
+        </tr>
+        </thead>
+        <tbody id="destinationsList"></tbody>
+    </table>
+    <br>
+    <h3>Destinations for 2018:</h3>
+    <div id="summaryBox">
+        <label>Summer:</label><input class="summary" id="summer" type="number"         value="0" readonly>
+        <label>Autumn:</label><input class="summary" id="autumn" type="number"      value="0" readonly>
+        <label>Winter:</label><input class="summary" id="winter" type="number"    value="0" readonly>
+        <label>Spring:</label><input class="summary" id="spring" type="number"   value="0" readonly>
+    </div>
+    <br>
+</div>
+<script>
+    function addDestination() {
+        let destinationElements = $(".inputData");
+        let destination = Array.from(destinationElements)
+            .map(d => d.value).join(", ");
+
+        if ($(destinationElements[0]).val() !== "" && $(destinationElements[1]).val() !== "") {
+            let season = $("#seasons").val();
+            let seasonUpperCase = season.charAt(0).toUpperCase() + season.slice(1);
+            let trip = $(`<tr><td>${destination}</td><td>${seasonUpperCase}</td></tr>`);
+            $("#destinationsList").append(trip);
+            let seasonElement = $(`#${season}`);
+            let newValue = Number(seasonElement.val()) + 1;
+            seasonElement.val(newValue);
+        }
+
+        for (let i = 0; i < 2; i++) {
+            $(destinationElements[i]).val("");
+        }
+    }
+
+    // function addDestination() {
+    //     /** Getting input fields values */
+    //     let cityInput = $('div#input input')[0].value;
+    //     let countryInput = $('div#input input')[1].value;
+    //
+    //     /** If Someone of the fields is empty do not append nothing */
+    //     if (cityInput === null || cityInput === ''
+    //         || countryInput === null || countryInput === '') {
+    //         return;
+    //     }
+    //
+    //     /** Append the new destination to the destinationList */
+    //     let ssn = $('#seasons.custom-select').val();
+    //     let season = ssn.charAt(0).toUpperCase() + ssn.substring(1);
+    //
+    //     $('#destinationsList').append(
+    //         $('<tr>')
+    //             .append(`<td>${cityInput}, ${countryInput}</td>`)
+    //             .append(`<td>${season}</td>`)
+    //     );
+    //
+    //     /** Clear input fields values */
+    //     $('div#input input')[0].value = '';
+    //     $('div#input input')[1].value = '';
+    //
+    //     let numPerSeason = $(`#summaryBox input.summary#${ssn}`).val();
+    //     $(`#summaryBox input.summary#${ssn}`).val(+numPerSeason + 1);
+    // }
+
+    //
+    // function addDestination(){
+    //     let cityField = $(".inputData")[0];
+    //     let city = $(cityField).val();
+    //     let countryField = $(".inputData")[1];
+    //     let country = $(countryField).val();
+    //     if (city && country){
+    //         let season = $("#seasons option:selected").text();
+    //         let newDestination = $(`<tr><td>${city}, ${country}</td><td>${season}</td></tr>`);
+    //         $("#destinationsList").append(newDestination);
+    //         $(cityField).val("");
+    //         $(countryField).val("");
+    //         switch(season){
+    //             case "Summer":
+    //                 $("#summer").val(+$("#summer").val() + 1);
+    //                 break;
+    //             case "Autumn":
+    //                 $("#autumn").val(+$("#autumn").val() + 1);
+    //                 break;
+    //             case "Winter":
+    //                 $("#winter").val(+$("#winter").val() + 1);
+    //                 break;
+    //             case "Spring":
+    //                 $("#spring").val(+$("#spring").val() + 1);
+    //                 break;
+    //         }
+    //     }
+    // }
+
+
+</script>
+</body>
+</html>

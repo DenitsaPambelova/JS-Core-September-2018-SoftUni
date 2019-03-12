@@ -1,0 +1,45 @@
+<div class="holder">
+    <input type="button" id="generate" value="Generate Summary"/>
+    <div id="content">
+        <p><strong>Important text. </strong>Not too important. <strong>Also useful info.</strong></p>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+
+    function summary(buttonSelector) {
+        $(buttonSelector).on('click', extractSummary);
+
+        function extractSummary() {
+            let summary = "";
+            let strongs = $('#content strong').toArray();
+            for(let strong of strongs){
+                summary += $(strong).text();
+            }
+            let parent = $('#content').parent();
+            console.log(parent);
+            $(parent).append($('<div>').attr('id', 'summary').append($('<h2>').text("Summary")).append($('<p>').text(summary)));
+        }
+    }
+    // function solve(button) {
+    //     $(button).click(summarize);
+    //
+    //     function summarize() {
+    //         let content = $('#content');
+    //         let parent = content.parent();
+    //         let summary = $(`<div id="summary"><h2>Summary</h2></div>`);
+    //         let summaryPar = $(`<p></p>`);
+    //         summary.append(summaryPar);
+    //         let strong = content.find('strong');
+    //
+    //         for (let elem of strong) {
+    //             summaryPar.append(elem.textContent);
+    //         }
+    //
+    //         parent.append(summary);
+    //     }
+    // }
+
+</script>
+<script>summary('#generate')</script>
+
