@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validation</title>
+    <style>.error {
+        border: 2px solid red;
+    }</style>
+</head>
+<body onload="validate()">
+<label for="email">Enter email:</label>
+<input id="email" type="text"/>
+<script>
+    function validate() {
+        document.querySelector("input").addEventListener("change", isValid);
+        let regex = /^[a-z]+@[a-z]+\.[a-z]+$/;
+
+        function isValid() {
+            if (!regex.test(this.value)) {
+                this.classList.add("error");
+            } else {
+                this.classList.remove("error");
+            }
+        }
+    }
+</script>
+</body>
+</html>
